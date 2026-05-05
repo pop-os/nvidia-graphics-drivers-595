@@ -1,5 +1,5 @@
 #! /bin/sh
-# preinst script for nvidia-dkms-#FLAVOUR#
+# preinst script for nvidia-dkms-595
 #
 # see: dh_installdeb(1)
 #
