@@ -1,0 +1,12 @@
+diff --git a/NVIDIA-Linux/systemd/system/nvidia-powerd.service b/NVIDIA-Linux/systemd/system/nvidia-powerd.service
+index 9f22984..ad88a9a 100644
+--- a/NVIDIA-Linux/systemd/system/nvidia-powerd.service
++++ b/NVIDIA-Linux/systemd/system/nvidia-powerd.service
+@@ -8,6 +8,7 @@ Type=simple
+ ExecStart=/usr/bin/nvidia-powerd
+ Restart=on-abort
+ RestartSec=10
++SuccessExitStatus=1
+ 
+ [Install]
+ WantedBy=multi-user.target
