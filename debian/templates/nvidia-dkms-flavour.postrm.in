@@ -1,5 +1,5 @@
 #! /bin/sh
-# postrm script for nvidia-dkms-#FLAVOUR#
+# postrm script for nvidia-dkms-#FLAVOUR#-open
 #
 # see: dh_installdeb(1)
 #
