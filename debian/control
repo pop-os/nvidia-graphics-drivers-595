@@ -65,6 +65,14 @@ Description: NVIDIA driver metapackage
  See /usr/share/doc/nvidia-driver-595/README.txt.gz
  for a complete list of supported GPUs and PCI IDs.
 
+Package: nvidia-driver-595-open
+Architecture: amd64 arm64
+Depends: nvidia-driver-595
+Multi-Arch: foreign
+Description: Transitional package for nvidia-driver-595
+ The open driver is the only driver in this release and therefore this
+ metapackage will install nvidia-driver-595 instead.
+
 Package: nvidia-kernel-source-595
 Architecture: amd64 arm64
 Multi-Arch: foreign
@@ -99,6 +107,14 @@ Description: NVIDIA DKMS package
  Provided that you have the kernel header packages installed, the kernel
  module will be built for your running kernel, and automatically rebuilt for
  any new kernel headers that are installed.
+
+Package: nvidia-dkms-595-open
+Architecture: amd64 arm64
+Depends: nvidia-dkms-595
+Multi-Arch: foreign
+Description: Transitional package for nvidia-dkms-595
+ The open driver is the only driver in this release and therefore this
+ metapackage will install nvidia-dkms-595 instead.
 
 Package: nvidia-utils-595
 Architecture: amd64 arm64
