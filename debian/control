@@ -33,8 +33,8 @@ Package: nvidia-driver-595
 Architecture: amd64 arm64
 Depends:
  libnvidia-gl-595 (= ${binary:Version}),
- nvidia-dkms-595 (>= 595.58.03),
- nvidia-kernel-common-595 (>= 595.58.03),
+ nvidia-dkms-595 (>= 595.71.05),
+ nvidia-kernel-common-595 (>= 595.71.05),
  nvidia-kernel-source-595 (= ${binary:Version}),
  libnvidia-compute-595 (= ${binary:Version}),
  libnvidia-extra-595 (= ${binary:Version}),
@@ -89,9 +89,9 @@ Provides:
  nvidia-dkms-kernel
 Depends:
  dkms,
- nvidia-kernel-source-595 (>= 595.58.03),
- nvidia-kernel-common-595 (>= 595.58.03),
- nvidia-firmware-595-595.58.03,
+ nvidia-kernel-source-595 (>= 595.71.05),
+ nvidia-kernel-common-595 (>= 595.71.05),
+ nvidia-firmware-595-595.71.05,
  ${misc:Depends}, ${shlibs:Depends}
 Description: NVIDIA DKMS package
  This package builds the NVIDIA kernel module needed by the userspace
@@ -103,7 +103,7 @@ Description: NVIDIA DKMS package
 Package: nvidia-utils-595
 Architecture: amd64 arm64
 Depends:
- nvidia-kernel-common-595-595.58.03,
+ nvidia-kernel-common-595-595.71.05,
  ${shlibs:Depends}, ${misc:Depends}
 Suggests:
  nvidia-driver-595,
@@ -120,7 +120,7 @@ Package: libnvidia-compute-595
 Architecture: i386 amd64 arm64
 Multi-Arch: same
 Depends:
- nvidia-kernel-common-595-595.58.03 [!i386],
+ nvidia-kernel-common-595-595.71.05 [!i386],
  ocl-icd-libopencl1,
  ${misc:Depends}, ${shlibs:Depends}
 Provides: libnvidia-compute, nvidia-opencl-icd, opencl-icd, libnvidia-ml.so.1 (= ${source:Version}),
@@ -180,7 +180,7 @@ Description: NVIDIA compute utilities
 Package: nvidia-headless-no-dkms-595
 Architecture: amd64 arm64
 Depends:
- nvidia-kernel-common-595 (>= 595.58.03),
+ nvidia-kernel-common-595 (>= 595.71.05),
  nvidia-kernel-source-595 (= ${binary:Version}),
  libnvidia-compute-595 (= ${binary:Version}),
  nvidia-compute-utils-595 (= ${binary:Version}),
@@ -217,9 +217,9 @@ Architecture: amd64 arm64
 Conflicts: nvidia-kernel-common
 Provides:
  nvidia-kernel-common,
- nvidia-kernel-common-595-595.58.03
+ nvidia-kernel-common-595-595.71.05
 Depends:
- ${misc:Depends}, ${shlibs:Depends}, nvidia-firmware-595-595.58.03
+ ${misc:Depends}, ${shlibs:Depends}, nvidia-firmware-595-595.71.05
 Replaces:
  nvidia-kernel-common
 Description: Shared files used with the kernel module
@@ -230,12 +230,12 @@ Description: Shared files used with the kernel module
  modules, and if you want udev to load the the NVIDIA kernel modules,
  and to create the uvm devices automatically.
 
-Package: nvidia-firmware-595-595.58.03
+Package: nvidia-firmware-595-595.71.05
 Architecture: amd64 arm64
 Breaks:
- nvidia-firmware-595-server-595.58.03
+ nvidia-firmware-595-server-595.71.05
 Replaces:
- nvidia-firmware-595-server-595.58.03
+ nvidia-firmware-595-server-595.71.05
 Depends:
  ${misc:Depends}
 Description: Firmware files used by the kernel module
@@ -249,7 +249,7 @@ Conflicts: libnvidia-gl, libnvidia-egl-gbm1
 Replaces: libnvidia-gl
 Provides: libnvidia-gl, libglx-vendor, libegl-vendor
 Depends:
- nvidia-kernel-common-595-595.58.03 [!i386],
+ nvidia-kernel-common-595-595.71.05 [!i386],
  libnvidia-common-595,
  ${misc:Depends}, ${shlibs:Depends},
  libnvidia-egl-wayland1
@@ -264,7 +264,7 @@ Conflicts: libnvidia-common
 Replaces: libnvidia-common
 Provides: libnvidia-common
 Depends:
- nvidia-kernel-common-595-595.58.03 [!i386],
+ nvidia-kernel-common-595-595.71.05 [!i386],
  ${misc:Depends}, ${shlibs:Depends}
 Description: Shared files used by the NVIDIA libraries
  This package provides a set of files that are required by the NVIDIA
@@ -278,7 +278,7 @@ Conflicts: libnvidia-extra
 Replaces: libnvidia-extra, libnvidia-common-595 (<< 440.64-0ubuntu3~)
 Provides: libnvidia-extra
 Depends:
- nvidia-kernel-common-595-595.58.03 [!i386],
+ nvidia-kernel-common-595-595.71.05 [!i386],
  ${misc:Depends}, ${shlibs:Depends}
 Description: Extra libraries for the NVIDIA driver
  This package provides an additional set of libraries to be used with
@@ -310,7 +310,7 @@ Multi-Arch: same
 Pre-Depends:
  ${misc:Pre-Depends}
 Depends:
- nvidia-kernel-common-595-595.58.03,
+ nvidia-kernel-common-595-595.71.05,
  ${shlibs:Depends}, ${misc:Depends}
 Provides:
  libnvidia-cfg1-any,
@@ -331,7 +331,7 @@ Multi-Arch: same
 Pre-Depends:
  ${misc:Pre-Depends}
 Depends:
- nvidia-kernel-common-595-595.58.03 [!i386],
+ nvidia-kernel-common-595-595.71.05 [!i386],
  ${shlibs:Depends}, ${misc:Depends}
 Provides:
  libnvidia-fbc1,
@@ -353,7 +353,7 @@ Multi-Arch: same
 Pre-Depends:
  ${misc:Pre-Depends}
 Depends:
- nvidia-kernel-common-595-595.58.03 [!i386],
+ nvidia-kernel-common-595-595.71.05 [!i386],
  libnvidia-compute-595 (= ${binary:Version}),
  ${shlibs:Depends}, ${misc:Depends}
 Conflicts:
@@ -375,7 +375,7 @@ Multi-Arch: same
 Pre-Depends:
  ${misc:Pre-Depends}
 Depends:
- nvidia-kernel-common-595-595.58.03 [!i386],
+ nvidia-kernel-common-595-595.71.05 [!i386],
  ${shlibs:Depends}, ${misc:Depends}
 Conflicts:
  libnvidia-encode,
@@ -416,7 +416,7 @@ Description: Transitional package for nvidia-dkms-595
 Package: nvidia-headless-no-dkms-595-open
 Architecture: amd64 arm64
 Depends:
- nvidia-kernel-common-595 (>= 595.58.03),
+ nvidia-kernel-common-595 (>= 595.71.05),
  nvidia-kernel-source-595-open (= ${binary:Version}),
  libnvidia-compute-595 (= ${binary:Version}),
  nvidia-compute-utils-595 (= ${binary:Version}),
@@ -520,11 +520,11 @@ Depends: nvidia-kernel-common-595
 Description: Shared files used with the kernel module (transitional package)
  Transitional package for upgrades. This package can be safely removed.
 
-Package: nvidia-firmware-590-595.58.03
+Package: nvidia-firmware-590-595.71.05
 Architecture: amd64 arm64
 Section: non-free/oldlibs
 Multi-Arch: no
-Depends: nvidia-firmware-595-595.58.03
+Depends: nvidia-firmware-595-595.71.05
 Description: Firmware files used by the kernel module (transitional package)
  Transitional package for upgrades. This package can be safely removed.
 
