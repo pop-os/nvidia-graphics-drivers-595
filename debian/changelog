@@ -1,3 +1,9 @@
+nvidia-graphics-drivers-595 (595.84-1pop1) noble; urgency=medium
+
+  * https://www.nvidia.com/en-us/drivers/details/272964/
+
+ -- Michael Murphy <michael@mmurphy.dev>  Fri, 19 Jun 2026 16:24:11 +0200
+
 nvidia-graphics-drivers-595 (595.71.05-1pop1) noble; urgency=medium
 
   * https://www.nvidia.com/en-us/drivers/details/267223/
