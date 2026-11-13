@@ -6,5 +6,6 @@ NVIDIA-Linux/systemd/system-sleep/nvidia                    lib/systemd/system-s
 debian/71-nvidia.rules                                                     lib/udev/rules.d
 debian/device-create/ub-device-create                                      sbin
 debian/framebuffer-nvidia                                                  usr/share/initramfs-tools/hooks
+debian/module-setup.sh                                                     usr/lib/dracut/modules.d/70nvidia
 debian/nvidia-graphics-drivers.conf                                        lib/modprobe.d
 debian/nvidia-graphics-drivers-kms.conf                                    etc/modprobe.d
