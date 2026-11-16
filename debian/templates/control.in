@@ -46,6 +46,15 @@ Depends:
  libnvidia-cfg1-#FLAVOUR# (= ${binary:Version}),
  libnvidia-fbc1-#FLAVOUR# (= ${binary:Version}) [!ppc64el],
  ${misc:Depends}
+Provides:
+    nvidia-driver-580-open,
+    nvidia-driver-595-open,
+Breaks:
+    nvidia-driver-580-open (<< ${binary:Version}),
+    nvidia-driver-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-driver-580-open (<< ${binary:Version}),
+    nvidia-driver-595-open (<< ${binary:Version}),
 Recommends:
  nvidia-settings,
  libnvidia-compute-#FLAVOUR#:i386 (= ${binary:Version}) [amd64],
@@ -68,12 +77,19 @@ Description: NVIDIA driver metapackage
 Package: nvidia-kernel-source-#FLAVOUR#
 Architecture: amd64 arm64
 Multi-Arch: foreign
-Conflicts:
- nvidia-kernel-source
-Provides:
- nvidia-kernel-source
 Depends:
  ${misc:Depends}, ${shlibs:Depends}
+Provides:
+    nvidia-kernel-source,
+    nvidia-kernel-source-580-open,
+    nvidia-kernel-source-595-open,
+Conflicts:
+    nvidia-kernel-source,
+    nvidia-kernel-source-580-open (<< ${binary:Version}),
+    nvidia-kernel-source-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-kernel-source-580-open (<< ${binary:Version}),
+    nvidia-kernel-source-595-open (<< ${binary:Version}),
 Description: NVIDIA kernel source package
  This package provides the NVIDIA kernel source needed by the userspace
  driver.
@@ -81,18 +97,25 @@ Description: NVIDIA kernel source package
 Package: nvidia-dkms-#FLAVOUR#
 Architecture: amd64 arm64
 Multi-Arch: foreign
-Conflicts:
- nvidia-dkms-kernel
-Replaces:
- nvidia-dkms-kernel
-Provides:
- nvidia-dkms-kernel
 Depends:
  dkms,
  nvidia-kernel-source-#FLAVOUR# (>= #DEBIAN_VERSION#),
  nvidia-kernel-common-#FLAVOUR# (>= #DEBIAN_VERSION#),
  nvidia-firmware-#FLAVOUR#-#VERSION#,
  ${misc:Depends}, ${shlibs:Depends}
+ ${misc:Depends}
+Provides:
+    nvidia-dkms-kernel,
+    nvidia-dkms-580-open,
+    nvidia-dkms-595-open,
+Conflicts:
+    nvidia-dkms-kernel,
+    nvidia-dkms-580-open (<< ${binary:Version}),
+    nvidia-dkms-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-dkms-kernel,
+    nvidia-dkms-580-open (<< ${binary:Version}),
+    nvidia-dkms-595-open (<< ${binary:Version}),
 Description: NVIDIA DKMS package
  This package builds the NVIDIA kernel module needed by the userspace
  driver, using DKMS.
@@ -186,6 +209,15 @@ Depends:
  nvidia-compute-utils-#FLAVOUR# (= ${binary:Version}),
  libnvidia-cfg1-#FLAVOUR# (= ${binary:Version}),
  ${misc:Depends}, ${shlibs:Depends}
+Provides:
+    nvidia-headless-no-dkms-580-open,
+    nvidia-headless-no-dkms-595-open,
+Conflicts:
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
 Description: NVIDIA headless metapackage - no DKMS
  This metapackage installs the NVIDIA driver and the libraries that enable
  parallel general purpose computation through CUDA and
@@ -197,9 +229,18 @@ Description: NVIDIA headless metapackage - no DKMS
 
 Package: nvidia-headless-#FLAVOUR#
 Architecture: amd64 arm64
-Conflicts: nvidia-headless
-Provides: nvidia-headless
-Replaces: nvidia-headless
+Provides:
+    nvidia-headless,
+    nvidia-headless-no-dkms-580-open,
+    nvidia-headless-no-dkms-595-open,
+Conflicts:
+    nvidia-headless,
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-headless,
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
 Depends:
  nvidia-headless-no-dkms-#FLAVOUR#,
  nvidia-dkms-#FLAVOUR#,
@@ -389,52 +430,36 @@ Description: NVENC Video Encoding runtime library
  .
  This package contains the nvidia-encode runtime library.
 
-Package: nvidia-driver-#FLAVOUR#-open
+# 595-open transitional packages
+
+Package: nvidia-driver-595-open
 Architecture: amd64 arm64
 Depends: nvidia-driver-#FLAVOUR#
-Provides: nvidia-driver-580-open
-Breaks: nvidia-driver-580-open (<< ${binary:Version})
-Replaces: nvidia-driver-580-open (<< ${binary:Version})
 Multi-Arch: foreign
 Description: Transitional package for nvidia-driver-#FLAVOUR#
  The open driver is the only driver in this release and therefore this
  metapackage will install nvidia-driver-#FLAVOUR# instead.
 
-Package: nvidia-kernel-source-#FLAVOUR#-open
+Package: nvidia-kernel-source-595-open
 Architecture: amd64 arm64
 Depends: nvidia-kernel-source-#FLAVOUR#
-Provides: nvidia-kernel-source-580-open
-Breaks: nvidia-kernel-source-580-open (<< ${binary:Version})
-Replaces: nvidia-kernel-source-580-open (<< ${binary:Version})
 Multi-Arch: foreign
 Description: Transitional package for nvidia-kernel-source-#FLAVOUR#
  The open driver is the only driver in this release and therefore this
  metapackage will install nvidia-kernel-source-#FLAVOUR# instead.
 
-Package: nvidia-dkms-#FLAVOUR#-open
+Package: nvidia-dkms-595-open
 Architecture: amd64 arm64
 Depends: nvidia-dkms-#FLAVOUR#
-Provides: nvidia-dkms-580-open
-Breaks: nvidia-dkms-580-open (<< ${binary:Version})
-Replaces: nvidia-dkms-580-open (<< ${binary:Version})
 Multi-Arch: foreign
 Description: Transitional package for nvidia-dkms-#FLAVOUR#
  The open driver is the only driver in this release and therefore this
  metapackage will install nvidia-dkms-#FLAVOUR# instead.
 
-Package: nvidia-headless-no-dkms-#FLAVOUR#-open
+Package: nvidia-headless-no-dkms-595-open
 Architecture: amd64 arm64
-Depends:
- nvidia-kernel-common-#FLAVOUR# (>= #DEBIAN_VERSION#),
- nvidia-kernel-source-#FLAVOUR#-open (= ${binary:Version}),
- libnvidia-compute-#FLAVOUR# (= ${binary:Version}),
- nvidia-compute-utils-#FLAVOUR# (= ${binary:Version}),
- libnvidia-cfg1-#FLAVOUR# (= ${binary:Version}),
- ${misc:Depends}, ${shlibs:Depends}
-Provides: nvidia-headless-no-dkms-580-open
-Breaks: nvidia-headless-no-dkms-580-open (<< ${binary:Version})
-Replaces: nvidia-headless-no-dkms-580-open (<< ${binary:Version})
-Description: NVIDIA headless metapackage - no DKMS (open kernel module)
+Depends: nvidia-headless-no-dkms-#FLAVOUR#
+Description: Transitional package for nvidia-headless-no-dkms-#FLAVOUR#
  This metapackage installs the NVIDIA driver and the libraries that enable
  parallel general purpose computation through CUDA and
  OpenCL. DKMS will not be installed, and, therefore, the kernel module
@@ -443,16 +468,10 @@ Description: NVIDIA headless metapackage - no DKMS (open kernel module)
  Install this package if you do not need X11 or Wayland support, which is
  provided by the nvidia-driver-#FLAVOUR# metapackage.
 
-Package: nvidia-headless-#FLAVOUR#-open
+Package: nvidia-headless-595-open
 Architecture: amd64 arm64
-Conflicts: nvidia-headless, nvidia-headless-580-open
-Provides: nvidia-headless, nvidia-headless-580-open (<< ${binary:Version})
-Replaces: nvidia-headless, nvidia-headless-580-open (<< ${binary:Version})
-Depends:
- nvidia-headless-no-dkms-#FLAVOUR#-open,
- nvidia-dkms-#FLAVOUR#-open,
- ${misc:Depends}, ${shlibs:Depends}
-Description: NVIDIA headless metapackage (open kernel module)
+Depends: nvidia-headless-#FLAVOUR#
+Description: Transitional package for nvidia-headless-#FLAVOUR#
  This metapackage installs the NVIDIA driver and the libraries that enable
  parallel general purpose computation through CUDA and
  OpenCL.
