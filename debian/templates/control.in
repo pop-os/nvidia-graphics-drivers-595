@@ -49,7 +49,7 @@ Depends:
 Provides:
     nvidia-driver-580-open,
     nvidia-driver-595-open,
-Breaks:
+Conflicts:
     nvidia-driver-580-open (<< ${binary:Version}),
     nvidia-driver-595-open (<< ${binary:Version}),
 Replaces:
