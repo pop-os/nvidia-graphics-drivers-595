@@ -46,6 +46,15 @@ Depends:
  libnvidia-cfg1-595 (= ${binary:Version}),
  libnvidia-fbc1-595 (= ${binary:Version}) [!ppc64el],
  ${misc:Depends}
+Provides:
+    nvidia-driver-580-open,
+    nvidia-driver-595-open,
+Conflicts:
+    nvidia-driver-580-open (<< ${binary:Version}),
+    nvidia-driver-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-driver-580-open (<< ${binary:Version}),
+    nvidia-driver-595-open (<< ${binary:Version}),
 Recommends:
  nvidia-settings,
  libnvidia-compute-595:i386 (= ${binary:Version}) [amd64],
@@ -68,12 +77,19 @@ Description: NVIDIA driver metapackage
 Package: nvidia-kernel-source-595
 Architecture: amd64 arm64
 Multi-Arch: foreign
-Conflicts:
- nvidia-kernel-source
-Provides:
- nvidia-kernel-source
 Depends:
  ${misc:Depends}, ${shlibs:Depends}
+Provides:
+    nvidia-kernel-source,
+    nvidia-kernel-source-580-open,
+    nvidia-kernel-source-595-open,
+Conflicts:
+    nvidia-kernel-source,
+    nvidia-kernel-source-580-open (<< ${binary:Version}),
+    nvidia-kernel-source-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-kernel-source-580-open (<< ${binary:Version}),
+    nvidia-kernel-source-595-open (<< ${binary:Version}),
 Description: NVIDIA kernel source package
  This package provides the NVIDIA kernel source needed by the userspace
  driver.
@@ -81,18 +97,25 @@ Description: NVIDIA kernel source package
 Package: nvidia-dkms-595
 Architecture: amd64 arm64
 Multi-Arch: foreign
-Conflicts:
- nvidia-dkms-kernel
-Replaces:
- nvidia-dkms-kernel
-Provides:
- nvidia-dkms-kernel
 Depends:
  dkms,
  nvidia-kernel-source-595 (>= 595.104.02),
  nvidia-kernel-common-595 (>= 595.104.02),
  nvidia-firmware-595-595.104.02,
  ${misc:Depends}, ${shlibs:Depends}
+ ${misc:Depends}
+Provides:
+    nvidia-dkms-kernel,
+    nvidia-dkms-580-open,
+    nvidia-dkms-595-open,
+Conflicts:
+    nvidia-dkms-kernel,
+    nvidia-dkms-580-open (<< ${binary:Version}),
+    nvidia-dkms-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-dkms-kernel,
+    nvidia-dkms-580-open (<< ${binary:Version}),
+    nvidia-dkms-595-open (<< ${binary:Version}),
 Description: NVIDIA DKMS package
  This package builds the NVIDIA kernel module needed by the userspace
  driver, using DKMS.
@@ -186,6 +209,15 @@ Depends:
  nvidia-compute-utils-595 (= ${binary:Version}),
  libnvidia-cfg1-595 (= ${binary:Version}),
  ${misc:Depends}, ${shlibs:Depends}
+Provides:
+    nvidia-headless-no-dkms-580-open,
+    nvidia-headless-no-dkms-595-open,
+Conflicts:
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
 Description: NVIDIA headless metapackage - no DKMS
  This metapackage installs the NVIDIA driver and the libraries that enable
  parallel general purpose computation through CUDA and
@@ -197,9 +229,18 @@ Description: NVIDIA headless metapackage - no DKMS
 
 Package: nvidia-headless-595
 Architecture: amd64 arm64
-Conflicts: nvidia-headless
-Provides: nvidia-headless
-Replaces: nvidia-headless
+Provides:
+    nvidia-headless,
+    nvidia-headless-no-dkms-580-open,
+    nvidia-headless-no-dkms-595-open,
+Conflicts:
+    nvidia-headless,
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
+Replaces:
+    nvidia-headless,
+    nvidia-headless-no-dkms-580-open (<< ${binary:Version}),
+    nvidia-headless-no-dkms-595-open (<< ${binary:Version}),
 Depends:
  nvidia-headless-no-dkms-595,
  nvidia-dkms-595,
@@ -389,6 +430,8 @@ Description: NVENC Video Encoding runtime library
  .
  This package contains the nvidia-encode runtime library.
 
+# 595-open transitional packages
+
 Package: nvidia-driver-595-open
 Architecture: amd64 arm64
 Depends: nvidia-driver-595
@@ -415,14 +458,8 @@ Description: Transitional package for nvidia-dkms-595
 
 Package: nvidia-headless-no-dkms-595-open
 Architecture: amd64 arm64
-Depends:
- nvidia-kernel-common-595 (>= 595.104.02),
- nvidia-kernel-source-595-open (= ${binary:Version}),
- libnvidia-compute-595 (= ${binary:Version}),
- nvidia-compute-utils-595 (= ${binary:Version}),
- libnvidia-cfg1-595 (= ${binary:Version}),
- ${misc:Depends}, ${shlibs:Depends}
-Description: NVIDIA headless metapackage - no DKMS (open kernel module)
+Depends: nvidia-headless-no-dkms-595
+Description: Transitional package for nvidia-headless-no-dkms-595
  This metapackage installs the NVIDIA driver and the libraries that enable
  parallel general purpose computation through CUDA and
  OpenCL. DKMS will not be installed, and, therefore, the kernel module
@@ -433,20 +470,58 @@ Description: NVIDIA headless metapackage - no DKMS (open kernel module)
 
 Package: nvidia-headless-595-open
 Architecture: amd64 arm64
-Conflicts: nvidia-headless
-Provides: nvidia-headless
-Replaces: nvidia-headless
-Depends:
- nvidia-headless-no-dkms-595-open,
- nvidia-dkms-595-open,
- ${misc:Depends}, ${shlibs:Depends}
-Description: NVIDIA headless metapackage (open kernel module)
+Depends: nvidia-headless-595
+Description: Transitional package for nvidia-headless-595
  This metapackage installs the NVIDIA driver and the libraries that enable
  parallel general purpose computation through CUDA and
  OpenCL.
  .
  Install this package if you do not need X11 or Wayland support, which is
  provided by the nvidia-driver-595 metapackage.
+
+# 580-open transitional packaging
+
+Package: nvidia-driver-580-open
+Architecture: amd64 arm64
+Depends: nvidia-driver-595-open
+Multi-Arch: foreign
+Description: Transitional package for nvidia-driver-595-open
+ This is a transitional package for nvidia-driver-595-open, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-kernel-source-580-open
+Architecture: amd64 arm64
+Depends: nvidia-kernel-source-595-open
+Multi-Arch: foreign
+Description: Transitional package for nvidia-kernel-source-595-open
+ This is a transitional package for nvidia-kernel-source-595-open, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-dkms-580-open
+Architecture: amd64 arm64
+Depends: nvidia-dkms-595-open
+Multi-Arch: foreign
+Description: Transitional package for nvidia-dkms-595-open
+ This is a transitional package for nvidia-dkms-595-open, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-headless-no-dkms-580-open
+Architecture: amd64 arm64
+Depends: nvidia-dkms-595-open
+Multi-Arch: foreign
+Description: Transitional package for nvidia-headless-no-dkms-595-open
+ This is a transitional package for nvidia-headless-no-dkms-595-open, and can be
+ safely removed after the installation is complete.
+
+Package: nvidia-headless-580-open
+Architecture: amd64 arm64
+Depends: nvidia-dkms-595-open
+Multi-Arch: foreign
+Description: Transitional package for nvidia-headless-595-open
+ This is a transitional package for nvidia-headless-595-open, and can be
+ safely removed after the installation is complete.
+
+# 590 transitional packaging
 
 Package: nvidia-driver-590
 Architecture: amd64 arm64
